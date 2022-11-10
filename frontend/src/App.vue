@@ -1,19 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app">
+    <Header />
+    <router-view />
+  </div>
 </template>
-
+  
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Header from './components/Header/Header.vue'
+import { mapActions } from 'vuex';
 export default {
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-};
-</script>
+  components: { Header },
+  name: 'App',
+  computed: {
 
+  },
+  created() {
+    this.GetCartItem();
+  },
+  methods: {
+    ...mapActions([
+      'GetCartItem'
+    ]),
+  }
+
+}
+</script>
+  
 <style>
 .clear {
   width: 100%;
@@ -27,10 +39,12 @@ export default {
   margin: 5% auto;
 }
 
+
 /* animation fade mode start here  */
 .fade-enter {
-  opacity: 0;
+  opacity: 0
 }
+
 
 .fade-enter-active {
   transition: opacity 1.5s;
@@ -45,11 +59,12 @@ export default {
 /* slide */
 .slide-enter {
   opacity: 0;
+
 }
 
 .slide-enter-active {
   animation: slide-in 1s ease-out forwards;
-  transition: opacity 0.5s;
+  transition: opacity .5s;
 }
 
 .slide-leave-active {
@@ -64,6 +79,7 @@ export default {
     transform: translateY(30px);
     transform: translateX(30px);
   }
+
   to {
     transform: translateY(0);
     transform: translateX(0px);
@@ -75,6 +91,7 @@ export default {
     transform: translateY(0);
     transform: translateX(0);
   }
+
   to {
     transform: translateY(30px);
     transform: translateX(30px);

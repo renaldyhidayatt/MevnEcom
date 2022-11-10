@@ -11,7 +11,7 @@
         </button>
       </h4>
       <div v-if="EditMode">
-        mg class="iimg col" :src="UserData.imgSrc" alt="" />
+        <img class="iimg col" :src="UserData.imgSrc" alt="" />
         <div class="container">
           <div class="row">
             <div class="col-md-8 d">
@@ -42,12 +42,7 @@
       <div v-if="!EditMode">
         <img class="iimg col" alt="" :src="UserData.imgSrc" />
         <div class="fileUpload">
-          <input
-            type="file"
-            @change="onFileChange"
-            class="upload"
-            enctype="multipart/form-data"
-          />
+          <input type="file" @change="onFileChange" class="upload" enctype="multipart/form-data" />
           <span>Upload</span>
         </div>
         <div class="container">
@@ -56,33 +51,17 @@
               <h3>
                 First Name :
                 <strong class="s">{{ UserData.firstName }}</strong>
-                <input
-                  class="form-control"
-                  placeholder="first name"
-                  type="text"
-                  v-model="UserData.firstName"
-                />
+                <input class="form-control" placeholder="first name" type="text" v-model="UserData.firstName" />
               </h3>
               <h3>
                 Last Name :
                 <strong class="s">{{ UserData.lastName }}</strong>
-                <input
-                  class="form-control"
-                  placeholder="last name"
-                  type="text"
-                  v-model="UserData.lastName"
-                />
+                <input class="form-control" placeholder="last name" type="text" v-model="UserData.lastName" />
               </h3>
               <h3>
                 Email :
                 <strong class="s">{{ UserData.Email }}</strong>
-                <input
-                  class="form-control"
-                  placeholder="email"
-                  type="email"
-                  v-model="UserData.Email"
-                  disabled
-                />
+                <input class="form-control" placeholder="email" type="email" v-model="UserData.Email" disabled />
               </h3>
               <h3>
                 Gender :
@@ -97,11 +76,7 @@
                 <strong class="s">{{ UserData.BDay }}</strong>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input
-                      type="date"
-                      v-model="UserData.BDay"
-                      class="form-control"
-                    />
+                    <input type="date" v-model="UserData.BDay" class="form-control" />
                   </div>
                 </div>
               </h3>
@@ -133,7 +108,6 @@ export default {
   },
   created() {
     const token = JSON.parse(localStorage.getItem("Auth")).Token;
-
     axios
       .get(`${URL_BACKEND}/users/UserData`, {
         headers: {
@@ -178,7 +152,7 @@ export default {
         }
       }
       axios
-        .put(`${URL_backend}/users/`, PostData, {
+        .put(`${URL_BACKEND}/users/`, PostData, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -200,9 +174,8 @@ export default {
     },
     DelAccount() {
       const token = JSON.parse(localStorage.getItem("Auth")).Token;
-
       axios
-        .delete(`${URL_backend}/users/`, { headers: { "x-auth-token": token } })
+        .delete(`${URL_BACKEND}/users/`, { headers: { "x-auth-token": token } })
         .then((res) => {
           console.log("deleted user successfully", res.data);
           this.LogOutUser();
@@ -213,7 +186,6 @@ export default {
     },
     LogOutUser() {
       let data = { isLogedIN: false, isAdmin: false };
-      // this.auth = {isUserLogedIN:false, IsUserAdmin:false}
       this.SetUserAuth(data);
       this.$router.push({ path: "/" });
     },
@@ -227,6 +199,7 @@ export default {
   margin-right: auto;
   width: 10em;
 }
+
 .d {
   font-family: cursive;
   border: 1px solid #2f4f4f1f;
@@ -247,20 +220,24 @@ export default {
   color: #fff;
   font-size: 1em;
   font-weight: bold;
-  margin: 1.25em auto; /*20px/16px 0*/
+  margin: 1.25em auto;
+  /*20px/16px 0*/
   overflow: hidden;
-  padding: 0.875em; /*14px/16px*/
+  padding: 0.875em;
+  /*14px/16px*/
   position: relative;
   text-align: center;
   width: 120px;
   cursor: pointer;
 }
+
 .fileUpload:hover,
 .fileUpload:active,
 .fileUpload:focus {
   background: #00a2a4;
   cursor: pointer;
 }
+
 .fileUpload input.upload {
   position: absolute;
   top: 0;
@@ -281,6 +258,7 @@ input[type="file"] {
   right: 100%;
   bottom: 100%;
 }
+
 .custom-file-upload {
   border: 1px solid #ccc;
   display: inline-block;

@@ -13,111 +13,62 @@
               </div>
               <form>
                 <div class="row">
-                  <div
-                    v-if="RegisterError !== ''"
-                    class="alert alert-danger"
-                    role="alert"
-                  >
+                  <div v-if="RegisterError !== ''" class="alert alert-danger" role="alert">
                     {{ RegisterError }}
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="text"
-                        v-model="RegisterData.FName"
-                        class="form-control"
-                        placeholder="First name"
-                      />
+                      <input type="text" v-model="RegisterData.FName" class="form-control" placeholder="First name" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="text"
-                        v-model="RegisterData.LName"
-                        class="form-control"
-                        placeholder="Last name"
-                      />
+                      <input type="text" v-model="RegisterData.LName" class="form-control" placeholder="Last name" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="email"
-                        v-model="RegisterData.Email"
-                        class="form-control R_Email"
-                        placeholder="Email"
-                      />
+                      <input type="email" v-model="RegisterData.Email" class="form-control R_Email"
+                        placeholder="Email" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="form-check form-check-inline">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio1"
-                          value="true"
-                          v-model="RegisterData.GenderMale"
-                        />
-                        <label class="form-check-label" for="inlineRadio1"
-                          >Male</label
-                        >
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                          value="true" v-model="RegisterData.GenderMale" />
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio2"
-                          value="true"
-                          v-model="RegisterData.GenderFemale"
-                        />
-                        <label class="form-check-label" for="inlineRadio1"
-                          >Female</label
-                        >
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                          value="true" v-model="RegisterData.GenderFemale" />
+                        <label class="form-check-label" for="inlineRadio1">Female</label>
                       </div>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="password"
-                        v-model="RegisterData.Pass"
-                        class="form-control R_Pass"
-                        placeholder="Password "
-                      />
+                      <input type="password" v-model="RegisterData.Pass" class="form-control R_Pass"
+                        placeholder="Password " />
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="password"
-                        v-model="RegisterData.confirmPass"
-                        class="form-control CR_Pass"
-                        placeholder="Confirm Password"
-                      />
+                      <input type="password" v-model="RegisterData.confirmPass" class="form-control CR_Pass"
+                        placeholder="Confirm Password" />
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="date"
-                        class="form-control"
-                        v-model="RegisterData.UserDate"
-                      />
+                      <input type="date" class="form-control" v-model="RegisterData.UserDate" />
                     </div>
                   </div>
                 </div>
                 <div class="mt-3">
-                  <button
-                    v-on:click="Register($event)"
-                    class="btn btn-primary RegisterIN"
-                  >
+                  <button v-on:click="Register($event)" class="btn btn-primary RegisterIN">
                     Register
                   </button>
                 </div>
@@ -135,40 +86,24 @@
               </div>
               <form>
                 <div class="row">
-                  <div
-                    v-if="LoginError"
-                    class="alert alert-danger"
-                    role="alert"
-                  >
+                  <div v-if="LoginError" class="alert alert-danger" role="alert">
                     invalid username or password
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="email"
-                        class="form-control emailIN"
-                        placeholder="Email"
-                        v-model="LoginData.Email"
-                      />
+                      <input type="email" class="form-control emailIN" placeholder="Email" v-model="LoginData.Email" />
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input
-                        type="password"
-                        class="form-control PassIN"
-                        placeholder="Password"
-                        v-model="LoginData.Password"
-                      />
+                      <input type="password" class="form-control PassIN" placeholder="Password"
+                        v-model="LoginData.Password" />
                     </div>
                   </div>
                 </div>
                 <div class="mt-3">
-                  <button
-                    v-on:click="Login($event)"
-                    class="btn btn-primary loginbut"
-                  >
+                  <button v-on:click="Login($event)" class="btn btn-primary loginbut">
                     Login
                   </button>
                 </div>
@@ -185,7 +120,7 @@
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 const PORT = process.env.PORT || 5000;
-const URL_backend = `http://localhost:${PORT}/api`;
+const URL_BACKEND = `http://localhost:${PORT}/api`;
 export default {
   name: "LoginRegister",
   data() {
@@ -237,15 +172,13 @@ export default {
           prith_day: String(this.RegisterData.UserDate),
         };
       }
-
-      // check if the password is matched
       if (this.RegisterData.Pass !== this.RegisterData.confirmPass) {
         this.RegisterError = "password not matched";
         this.RegisterData.Pass = "";
         this.RegisterData.confirmPass = "";
       } else {
         axios
-          .post(`${URL_backend}/users`, userdata)
+          .post(`${URL_BACKEND}/users`, userdata)
           .then((res) => {
             console.log("reigester res", res);
             this.LoginData.Email = res.data.email;
@@ -265,7 +198,7 @@ export default {
         password: String(this.LoginData.Password),
       };
       axios
-        .post(`${URL_backend}/auth`, userdata)
+        .post(`${URL_BACKEND}/auth`, userdata)
         .then((res) => {
           getusdata(res);
           this.LoginError = false;
@@ -277,7 +210,7 @@ export default {
 
       const getusdata = (Token) => {
         axios
-          .get(`${URL_backend}/users/UserData`, {
+          .get(`${URL_BACKEND}/users/UserData`, {
             headers: { "x-auth-token": String(Token.data) },
           })
           .then((res) => {
